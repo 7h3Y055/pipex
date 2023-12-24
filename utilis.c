@@ -36,7 +36,7 @@ void	init_t_utilis(t_utilis *pipex, int argc, char const **argv, char **envp)
 	pipex->infile = argv[1];
 	pipex->outfile = argv[argc - 1];
 	pipex->infile_fd = open(pipex->infile, O_RDONLY);
-	pipex->outfile_fd = open(pipex->outfile, O_WRONLY | O_TRUNC | O_CREAT, 644);
+	pipex->outfile_fd = open(pipex->outfile, O_WRONLY | O_TRUNC | O_CREAT, 0777);
 	pipex->envp = envp;
 	pipex->argument_1 = ft_split(argv[2], ' ');
 	pipex->argument_2 = ft_split(argv[3], ' ');
@@ -47,29 +47,15 @@ void	init_t_utilis(t_utilis *pipex, int argc, char const **argv, char **envp)
 
 void	check_t_utilis(t_utilis *pipex)
 {
-	int		i;
-	char	*error_msg;
-	char	*tmp;
-
 	if (pipex->infile_fd == -1)
 		perror(pipex->infile);
 	if (!pipex->binary_path_1 || !pipex->binary_path_2)
-	{
-		i = -1;
-		while (pipex->envp[++i])
-			if (ft_strncmp(pipex->envp[i], "SHELL=", 6) == 0)
-				break ;
-		tmp = ft_strjoin(&pipex->envp[i][11], "");
-		error_msg = ft_strjoin(tmp, ": command not found: ");
-		free(tmp);
-		check_t_utilis_helper(pipex, error_msg);
-		free(error_msg);
-	}
+		check_t_utilis_helper(pipex, "command not found: ");
 	if (pipex->infile_fd == -1 || !pipex->binary_path_1 || \
 			!pipex->binary_path_2)
 	{
 		free_allocated_mem(pipex);
-		exit(0);
+		exit(1);
 	}
 }
 
