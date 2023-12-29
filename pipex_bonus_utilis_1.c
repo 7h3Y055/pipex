@@ -1,6 +1,5 @@
 #include "pipex_bonus.h"
 
-
 void	*free_split(char **param)
 {
 	int	i;
@@ -36,7 +35,7 @@ t_utilis	*init_t_utilis(int argc, char **argv, char **envp, int heredoc)
 	pipex->argc = argc;
 	pipex->argv = argv;
 	pipex->outfile = argv[argc - 1];
-	pipex->outfile_fd = open(pipex->outfile, O_CREAT | O_WRONLY | O_APPEND, 0644);
+	pipex->outfile_fd = open(pipex->outfile, O_CREAT | 01 | O_APPEND, 0644);
 	return (pipex);
 }
 
@@ -48,4 +47,3 @@ void	free_all(void *ptr1, void *ptr2, void *ptr3, void *ptr4)
 	free(ptr4);
 	exit(1);
 }
-

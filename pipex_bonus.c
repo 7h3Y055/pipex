@@ -1,5 +1,4 @@
 #include "pipex_bonus.h"
-#include "libft/libft.h"
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -9,7 +8,8 @@ int	main(int argc, char **argv, char **envp)
 	{
 		ft_putendl_fd("[+] Usage:", 1);
 		ft_putendl_fd("./pipex_bonus <INFILE> <CMD> ... <CMD> <OUTFILE>", 1);
-		ft_putendl_fd("./pipex_bonus here_doc <LIMITER> <CMD> ... <CMD> <OUTFILE>", 1);
+		ft_putendl_fd(\
+			"./pipex_bonus here_doc <LIMITER> <CMD> ... <CMD> <OUTFILE>", 1);
 		return (0);
 	}
 	if (ft_strncmp(argv[1], "here_doc", 10) == 0 && argc == 6)

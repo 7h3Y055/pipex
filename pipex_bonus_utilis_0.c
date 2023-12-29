@@ -1,10 +1,9 @@
 #include "pipex_bonus.h"
 
-
-char *get_input_data(char *limiter)
+char	*get_input_data(char *limiter)
 {
-	char *str;
-	char *tmp;
+	char	*str;
+	char	*tmp;
 
 	str = NULL;
 	while (1)
@@ -26,9 +25,9 @@ char *get_input_data(char *limiter)
 	return (str);
 }
 
-char *ft_merge(char *s1, char *s2)
+char	*ft_merge(char *s1, char *s2)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (!s1 && !s2)
 		return (NULL);
@@ -44,8 +43,6 @@ char *ft_merge(char *s1, char *s2)
 	}
 	return (tmp);
 }
-
-
 
 char	*get_binary_path(char **envp, char *binary)
 {
@@ -92,4 +89,3 @@ void	*ft_error(char *str)
 	ft_putendl_fd(str, 2);
 	return (NULL);
 }
-
